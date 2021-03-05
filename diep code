@@ -54,8 +54,9 @@ if(press.keyCode == 32){
 	let bX = 616
 	let bY = 262
 	let bR = playerRotation
+	bullet.src = "Images/Bullet.svg"
 	//bullet.src = "https://lh3.googleusercontent.com/EIEfvvZdBns-xyeJzhOvbNZljeLk4CCPMxqF8LnhdhRruiRoMPcf9VAvpsFeDXRxIz2P=s85"
-	bullet.src = "Bullet.svg"
+	//bullet.src = "Bullet.svg"
 	//bullet.src = "file:///C:/Users/codeC/OneDrive%20-%20Davis%20School%20District/Documents/Files/Images/Bullet.svg"
 	//bullet.src = "https://lh3.googleusercontent.com/YyjWLPINF8Oz3Q0G1y_AxmlF5-IKu6BQp02LAHlcr2R33ptZOiUVrXiDII6EbUAnHCDa=s85"
 	//tank.src = "https://lh3.googleusercontent.com/TnR5r9cntwQU19swPySGluJBrFpclbUllODaF3C5OS9c4RirOZ6nQiDnXivCht34ACU7avY=s137"
