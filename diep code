@@ -1,0 +1,126 @@
+<!DOCTYPE html><html><head>
+
+<style>
+body{
+overflow: hidden;
+background-color: coral;
+}
+</style>
+
+</head>
+<body>
+<p id='i'></p>
+<p id="x"></p>
+<p id="y"></p>
+<p id="bullets"></p>
+<p id="objects"></p>
+<p id="blocks"></p>
+<img id="img" style="position: absolute; top: 312px; left: 682px;" src="file:///C:/Users/codeC/OneDrive%20-%20Davis%20School%20District/Documents/Files/Images/Tank1.svg">
+<canvas id="page"></canvas>
+<script>
+//https://lh3.googleusercontent.com/ekzkEbDptIiFnWdS6bQN0zg1afBQuNr9v6x-M60jE7ooAnPo1oFaxW9K3wi67YCvyKoesX4=s113
+var mouseX = 1365
+var mouseY = 312
+var bulletSpeed = 10
+var shootSpeed = 1000
+var shootTimer = 0
+window.blocks = []
+setInterval(function(event){
+
+checkCollisions()
+var playerRotation = (Math.atan2(312 - mouseY, 682 - mouseX) * 180 / Math.PI) + 180;
+1.33333333333
+document.getElementById("img").style = "height: 100px; position: absolute; top: 262px; left: 616px;"
+document.getElementById("img").style.transform = 'rotate('+playerRotation+'deg)'
+document.getElementById("i").innerHTML = playerRotation
+document.getElementById("x").innerHTML = mouseX
+document.getElementById("y").innerHTML = mouseY
+document.getElementById("blocks").innerHTML = blocks
+
+    document.onmousemove = function(event){
+	
+		event.pageX = event.clientX
+		event.pageY = event.clientY
+		
+		mouseX = event.pageX
+		mouseY = event.pageY
+    }
+	
+window.onkeypress = function(press){
+if(shootTimer > shootSpeed || shootTimer == shootSpeed){
+shootTimer = 0
+if(press.keyCode == 32){
+	let bullet = document.createElement("img")
+	let bX = 616
+	let bY = 262
+	let bR = playerRotation
+	//bullet.src = "https://lh3.googleusercontent.com/EIEfvvZdBns-xyeJzhOvbNZljeLk4CCPMxqF8LnhdhRruiRoMPcf9VAvpsFeDXRxIz2P=s85"
+	bullet.src = "Bullet.svg"
+	//bullet.src = "file:///C:/Users/codeC/OneDrive%20-%20Davis%20School%20District/Documents/Files/Images/Bullet.svg"
+	//bullet.src = "https://lh3.googleusercontent.com/YyjWLPINF8Oz3Q0G1y_AxmlF5-IKu6BQp02LAHlcr2R33ptZOiUVrXiDII6EbUAnHCDa=s85"
+	//tank.src = "https://lh3.googleusercontent.com/TnR5r9cntwQU19swPySGluJBrFpclbUllODaF3C5OS9c4RirOZ6nQiDnXivCht34ACU7avY=s137"
+	document.getElementById("bullets").appendChild(bullet)
+	bullet.style = "height: 100px; position: absolute; top: 262px; left: 616px;"
+	bX += 30*Math.cos(bR * Math.PI / 180)
+	bY += 30*Math.sin(bR * Math.PI / 180)
+	setInterval(function(){
+		bX += bulletSpeed*Math.cos(bR * Math.PI / 180)
+		bY += bulletSpeed*Math.sin(bR * Math.PI / 180)
+		bullet.style= "height: 100px; position: absolute; top: "+bY+"px; left: "+bX+"px;"
+		bullet.id = "bullet"
+		let border = bullet.getBoundingClientRect()
+		if(border.top < -15 || border.bottom < -15 || border.right < -15 || border.left < -15){
+			bullet.remove()
+		}
+		/*for(let i = 0; i<blocks.length; i++){
+			if(Math.round(blocks[i].position().left - bX) < 10 && Math.round(blocks[i].position().top - bY) < 10){
+				blocks[i].remove()
+				let shouldRemove = true
+			}
+		}
+		if(shouldRemove){
+			bullet.remove()
+		}*/
+	},50)
+}
+}
+}
+},1)
+setInterval(function(){
+shootTimer+=50
+
+},50)
+</script>
+
+<script> //Make blocks
+setInterval(function(){
+let object = document.createElement("img")
+let obX = Math.random() * 1365
+let obY = Math.random() * 624
+object.src = "file:///C:/Users/codeC/OneDrive%20-%20Davis%20School%20District/Documents/Files/Images/Blocks/Square.svg"
+document.getElementById("objects").appendChild(object)
+object.style = "height: 20px; position: absolute; top: "+obY+"px; left: "+obX+"px;"
+object.id = "block"
+},500)
+</script>
+
+<script> //checks for collisions
+function checkCollisions(){
+var oA = document.querySelectorAll("p.blocks")
+blocks = oA
+for(let i = 0; i< oA.length; i++){
+	oI = oA[i]
+	oB = document.querySelectorAll("p.bullets")
+	for(let x = 0;x<oB.length; x++){
+		oX = aB[i]
+		if(i=1/*Math.abs(oX.position.top - oI.position.top) < 900 && Math.abs(oX.position.left - oI.position.left) < 900*/){
+			oX.parentNode.removeChild(oX)
+			oI.remove()
+		}
+	}
+}
+}
+</script
+
+</body>
+</html>
